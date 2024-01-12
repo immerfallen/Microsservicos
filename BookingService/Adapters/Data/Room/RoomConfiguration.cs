@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Entities = Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Data.Room
 {
-    internal class RoomConfiguration : IEntityTypeConfiguration<Room>
+    internal class RoomConfiguration : IEntityTypeConfiguration<Entities.Room>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<Entities.Room> builder)
         {
             builder.HasKey(x => x.Id);
             builder.OwnsOne(x => x.Price)
