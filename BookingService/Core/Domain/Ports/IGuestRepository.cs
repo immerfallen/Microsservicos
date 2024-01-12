@@ -12,7 +12,7 @@ namespace Domain.Ports
         Task<Guest> Get(int id);
         Task<List<Guest>> GetAll();
         Task Delete(int id);
-        Task<int> Save(Guest guest);
+        Task<int> Create(Guest guest);
         Task<int> Update(Guest guest);
     }
 }

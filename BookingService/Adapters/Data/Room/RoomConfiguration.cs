@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.Room
 {
     internal class RoomConfiguration : IEntityTypeConfiguration<Room>
     {
