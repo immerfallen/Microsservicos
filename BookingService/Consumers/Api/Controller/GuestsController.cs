@@ -31,11 +31,27 @@ namespace Api.Controller
 
             if(res.Success) return Created("", res);
 
-            if(res.ErrorCode == ErrorCode.NOT_FOUND)
+            if(res.ErrorCode == ErrorCode.COULD_NOT_STORE_DATA)
             {
                 return BadRequest(res);
             }
-            _logger.LogError("Response with unknokwn erro returned", res);
+            if (res.ErrorCode == ErrorCode.INVALID_EMAIL)
+            {
+                return BadRequest(res);
+            }
+            if (res.ErrorCode == ErrorCode.MISSING_REQUIRED_INFORMATION)
+            {
+                return BadRequest(res);
+            }
+            if (res.ErrorCode == ErrorCode.INVALID_DOCUMENT)
+            {
+                return BadRequest(res);
+            }
+            if (res.ErrorCode == ErrorCode.NOT_FOUND)
+            {
+                return BadRequest(res);
+            }
+            _logger.LogError("Response with unknokwn error returned", res);
             return BadRequest(500);
         }
 

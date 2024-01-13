@@ -2,6 +2,7 @@
 using Application.Guest.Ports;
 using Application.Guest.Requests;
 using Application.Guest.Responses;
+using Domain.Exceptions;
 using Domain.Ports;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,10 @@ namespace Application
             try
             {
                 var guest = GuestDTO.MapToEntity(request.Data);
-                request.Data.Id = await _guestRepository.Create(guest);
+
+                await guest.Save(_guestRepository);
+
+                request.Data.Id = guest.Id;
 
                 return new GuestResponse
                 {
@@ -31,17 +35,47 @@ namespace Application
                     Data = request.Data
                 };
             }
+            catch (InvalidDocumentException e)
+            {
+                return new GuestResponse
+                {
+                    Success = false,
+                    Message = "Document Id is not valid",
+                    ErrorCode = Guest.ErrorCode.INVALID_DOCUMENT
+
+                };
+            }
+            catch (MissingRequiredException e)
+            {
+                return new GuestResponse
+                {
+                    Success = false,
+                    Message = "Missing required information",
+                    ErrorCode = Guest.ErrorCode.MISSING_REQUIRED_INFORMATION
+
+                };
+            }
+            catch (InvalidEmailException e)
+            {
+                return new GuestResponse
+                {
+                    Success = false,
+                    Message = "Invalid Email",
+                    ErrorCode = Guest.ErrorCode.INVALID_EMAIL
+
+                };
+            }
             catch (Exception ex)
             {
                 return new GuestResponse
                 {
-                    Success = false,                    
+                    Success = false,
                     Message = ex.Message,
                     ErrorCode = Guest.ErrorCode.COULD_NOT_STORE_DATA
 
                 };
             }
-           
+
         }
     }
 }
