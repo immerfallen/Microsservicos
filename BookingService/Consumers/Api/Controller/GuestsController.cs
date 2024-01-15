@@ -49,10 +49,20 @@ namespace Api.Controller
             }
             if (res.ErrorCode == ErrorCode.NOT_FOUND)
             {
-                return BadRequest(res);
+                return NotFound(res);
             }
             _logger.LogError("Response with unknokwn error returned", res);
             return BadRequest(500);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<GuestDTO>> Get(int guestId)
+        {
+            var res = await _guestManager.GetGuest(guestId);
+
+            if (res.Success) return Ok(res.Data);
+
+            return NotFound(res);
         }
 
     }

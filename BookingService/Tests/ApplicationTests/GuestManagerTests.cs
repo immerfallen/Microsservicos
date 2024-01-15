@@ -4,6 +4,7 @@ using Application.Guest;
 using Application.Guest.Requests;
 using Domain.Entities;
 using Domain.Ports;
+using Microsoft.Win32;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -195,6 +196,52 @@ namespace ApplicationTests
             Assert.AreEqual(res.ErrorCode, ErrorCode.INVALID_EMAIL);
             Assert.AreEqual(res.Message, "Invalid Email");
 
+        }
+
+
+        [Test]
+        public async Task ShouldReturnNotFoundWhenGuestDoesNotExist()
+        {          
+
+            var fakeRepo = new Mock<IGuestRepository>();
+            fakeRepo.Setup(x => x.Get(
+                333)).Returns(Task.FromResult<Guest?>(null));
+
+            guestManager = new GuestManager(fakeRepo.Object);
+
+            var res = await guestManager.GetGuest(333);
+            Assert.IsNotNull(res);
+            Assert.False(res.Success);
+            Assert.AreEqual(res?.ErrorCode, ErrorCode.NOT_FOUND);
+            Assert.AreEqual(res?.Message, "Nenhum registro foi encontrado para o id " + 333.ToString());
+        }
+
+        [Test]
+        public async Task ShouldReturnGuestSuccess()
+        {
+
+            var fakeGuest = new Guest
+            {
+                Id = 333,
+                Name = "Test",
+                Document = new Domain.ValueObjects.PersonId
+                {
+                    DocumentType = Domain.Enums.DocumentType.DriverLicence,
+                    Idnumber = "123"
+                }
+            };
+
+            var fakeRepo = new Mock<IGuestRepository>();
+            fakeRepo.Setup(x => x.Get(
+                333)).Returns(Task.FromResult<Guest?>((Guest?)fakeGuest));
+
+            guestManager = new GuestManager(fakeRepo.Object);
+
+            var res = await guestManager.GetGuest(333);
+            Assert.IsNotNull(res);
+            Assert.True(res.Success);
+            Assert.AreEqual(res.Data.Id, fakeGuest.Id);
+            Assert.AreEqual(res.Data.Name, fakeGuest.Name);
         }
     }
 }

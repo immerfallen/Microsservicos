@@ -1,4 +1,5 @@
 ﻿using Domain.Ports;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,9 @@ namespace Data.Guest
             throw new NotImplementedException();
         }
 
-        public Task<Domain.Entities.Guest> Get(int id)
+        public async Task<Domain.Entities.Guest?> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _hotelDbContext.Guests.Where(g => g.Id == id).FirstOrDefaultAsync();
         }
 
         public Task<List<Domain.Entities.Guest>> GetAll()
