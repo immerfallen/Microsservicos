@@ -20,8 +20,8 @@ namespace Domain.Entities
 
         private void ValidateState()
         {
-            if (Document == null ||
-               Document.Idnumber.Length < 3 ||
+            if (Document.Idnumber == null ||
+               Document.Idnumber?.Length < 3 ||
                Document.DocumentType == 0
                 )
             {

@@ -25,7 +25,7 @@ namespace Api.Controller
             var request = new CreateGuestRequest
             {
                 Data = guest
-            };
+            };                   
 
             var res = await _guestManager.CreateGuest(request);
 
