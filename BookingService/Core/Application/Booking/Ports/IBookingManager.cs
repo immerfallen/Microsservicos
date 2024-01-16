@@ -1,4 +1,5 @@
-﻿using Application.DTOs;
+﻿using Application.Booking.Responses;
+using Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Application.Booking.Ports
 {
     public interface IBookingManager
     {
-        Task<BookingDTO> CreateBooking(BookingDTO booking);
-        Task<BookingDTO> GetBooking(int bookingID);
+        Task<BookingResponse> CreateBooking(BookingDTO booking);
+        Task<BookingResponse> GetBooking(int bookingID);
     }
 }

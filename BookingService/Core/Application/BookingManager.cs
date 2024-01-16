@@ -1,4 +1,5 @@
 ﻿using Application.Booking.Ports;
+using Application.Booking.Responses;
 using Application.DTOs;
 using Domain.Booking.Ports;
 using System;
@@ -16,15 +17,31 @@ namespace Application
         public BookingManager(IBookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
-        }       
-
-        public async Task<BookingDTO> CreateBooking(BookingDTO bookingDTO)
-        {
-            var booking = BookingDTO.MapToEntity(bookingDTO);
-            booking.Save(_bookingRepository);
         }
 
-        public Task<BookingDTO> GetBooking(int bookingID)
+        public async Task<BookingResponse> CreateBooking(BookingDTO bookingDTO)
+        {
+            try
+            {
+                var booking = BookingDTO.MapToEntity(bookingDTO);
+                await booking.Save(_bookingRepository);
+                bookingDTO.Id = booking.Id;
+
+                return new BookingResponse
+                {
+                    Data = bookingDTO,
+                    Success = true,
+                };
+            }
+            catch (Exception ex)
+            {
+            // implementação das exceções personalizadas
+                throw;
+            }
+            
+        }
+
+        public Task<BookingResponse> GetBooking(int bookingID)
         {
             throw new NotImplementedException();
         }

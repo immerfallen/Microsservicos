@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Booking\Enums\" />
-    <Folder Include="Booking\Exceptions\" />
     <Folder Include="Booking\ValueObject\" />
     <Folder Include="DomainEvents\" />
     <Folder Include="Room\Exceptions\" />

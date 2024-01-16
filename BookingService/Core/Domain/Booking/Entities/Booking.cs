@@ -3,6 +3,7 @@ using Entities = Domain.Guest.Entities;
 using Action = Domain.Guest.Enums.Action;
 using Domain.Booking.Ports;
 using System.ComponentModel.DataAnnotations;
+using Domain.Booking.Exceptions;
 
 namespace Domain.Booking.Entities
 {
@@ -41,12 +42,28 @@ namespace Domain.Booking.Entities
                 (Status.Paid, Action.Refound) => Status.Refounded,
                 (Status.Canceled, Action.Reopen) => Status.Created,
                 _ => Status
-
             };
+        }
+
+        public void ValidateState()
+        {
+            if (this.PlacedAt == default(DateTime))
+            {
+                throw new PlacedAtRequiredInformationException();
+            }
+            if (this.Start == default(DateTime))
+            {
+                throw new StartRequiredInformationException();
+            }
+            if (this.End == default(DateTime))
+            {
+                throw new EndRequiredInformationException();
+            }
         }
 
         public async Task Save(IBookingRepository bookingRepository)
         {
+            ValidateState();
             if(Id == 0)
             {
                 var resp = await bookingRepository.CreateBookingAsync(this);

@@ -1,11 +1,14 @@
 using Application;
+using Application.Booking.Ports;
 using Application.Guest.Ports;
 using Application.Room.Ports;
 using Auth;
 using Auth.Interfaces;
 using Data;
+using Data.Booking;
 using Data.Guest;
 using Data.Room;
+using Domain.Booking.Ports;
 using Domain.Guest.Ports;
 using Domain.Room.Ports;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,7 +38,7 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
         {
             foreach (var error in state.Value.Errors)
             {
-                
+
                 errors.Add(error.ErrorMessage);
             }
         }
@@ -59,6 +62,8 @@ builder.Services.AddScoped<IGuestManager, GuestManager>();
 builder.Services.AddScoped<IGuestRepository, GuestRepository>();
 builder.Services.AddScoped<IRoomManager, RoomManager>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IBookingManager, BookingManager>();
+builder.Services.AddScoped<IBookingRepository, BookingRespository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 #endregion
 
