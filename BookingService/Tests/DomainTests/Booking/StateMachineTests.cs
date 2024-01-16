@@ -1,5 +1,5 @@
-using Domain.Entities;
-using Domain.Enums;
+using Domain.Guest.Entities;
+using Domain.Guest.Enums;
 
 namespace DomainTests.Bookings
 {
@@ -21,7 +21,7 @@ namespace DomainTests.Bookings
         public void ShouldSetstatusToPaidWhenPayingforABookingWithCreatedStatus()
         {
             var booking = new Booking();
-            booking.ChangeState(Domain.Enums.Action.Pay);
+            booking.ChangeState(Domain.Guest.Enums.Action.Pay);
 
             Assert.AreEqual(booking.CurrentStatus, Status.Paid);
         }
@@ -30,7 +30,7 @@ namespace DomainTests.Bookings
         public void ShouldSetstatusToCancelWhenCancelingABookingWithCreatedStatus()
         {
             var booking = new Booking();
-            booking.ChangeState(Domain.Enums.Action.Cancel);
+            booking.ChangeState(Domain.Guest.Enums.Action.Cancel);
 
             Assert.AreEqual(booking.CurrentStatus, Status.Canceled);
         }
@@ -39,8 +39,8 @@ namespace DomainTests.Bookings
         public void ShouldSetstatusToFinishWhenFinishinABookingWithPaidBooking()
         {
             var booking = new Booking();
-            booking.ChangeState(Domain.Enums.Action.Pay);
-            booking.ChangeState(Domain.Enums.Action.Finish);
+            booking.ChangeState(Domain.Guest.Enums.Action.Pay);
+            booking.ChangeState(Domain.Guest.Enums.Action.Finish);
 
             Assert.AreEqual(booking.CurrentStatus, Status.Finished);
         }
@@ -50,8 +50,8 @@ namespace DomainTests.Bookings
         public void ShouldSetstatusToRefoundedWhenRefoundedABookingWithPaidBooking()
         {
             var booking = new Booking();
-            booking.ChangeState(Domain.Enums.Action.Pay);
-            booking.ChangeState(Domain.Enums.Action.Refound);
+            booking.ChangeState(Domain.Guest.Enums.Action.Pay);
+            booking.ChangeState(Domain.Guest.Enums.Action.Refound);
 
             Assert.AreEqual(booking.CurrentStatus, Status.Refounded);
         }
@@ -60,8 +60,8 @@ namespace DomainTests.Bookings
         public void ShouldSetStatusToCreatedWhenReopeningACanceledBooking()
         {
             var booking = new Booking();
-            booking.ChangeState(Domain.Enums.Action.Cancel);
-            booking.ChangeState(Domain.Enums.Action.Reopen);
+            booking.ChangeState(Domain.Guest.Enums.Action.Cancel);
+            booking.ChangeState(Domain.Guest.Enums.Action.Reopen);
 
             Assert.AreEqual(booking.CurrentStatus, Status.Created);
         }
@@ -71,7 +71,7 @@ namespace DomainTests.Bookings
         public void ShouldNotSetStatusWhenRefoundingACreatedBooking()
         {
             var booking = new Booking();           
-            booking.ChangeState(Domain.Enums.Action.Refound);
+            booking.ChangeState(Domain.Guest.Enums.Action.Refound);
 
             Assert.AreEqual(booking.CurrentStatus, Status.Created);
         }
@@ -81,9 +81,9 @@ namespace DomainTests.Bookings
         {
             var booking = new Booking();
 
-            booking.ChangeState(Domain.Enums.Action.Pay);
-            booking.ChangeState(Domain.Enums.Action.Finish);
-            booking.ChangeState(Domain.Enums.Action.Refound);
+            booking.ChangeState(Domain.Guest.Enums.Action.Pay);
+            booking.ChangeState(Domain.Guest.Enums.Action.Finish);
+            booking.ChangeState(Domain.Guest.Enums.Action.Refound);
 
             Assert.AreEqual(booking.CurrentStatus, Status.Finished);
         }

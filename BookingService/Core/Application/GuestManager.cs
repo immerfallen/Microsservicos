@@ -2,8 +2,8 @@
 using Application.Guest.Ports;
 using Application.Guest.Requests;
 using Application.Guest.Responses;
-using Domain.Exceptions;
-using Domain.Ports;
+using Domain.Guest.Exceptions;
+using Domain.Guest.Ports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,43 +35,43 @@ namespace Application
                     Data = request.Data
                 };
             }
-            catch (InvalidDocumentException e)
-            {
-                return new GuestResponse
-                {
-                    Success = false,
-                    Message = "Document Id is not valid",
-                    ErrorCode = Guest.ErrorCode.INVALID_DOCUMENT
+            //catch (InvalidDocumentException e)
+            //{
+            //    return new GuestResponse
+            //    {
+            //        Success = false,
+            //        Message = "Document Id is not valid",
+            //        ErrorCode = ErrorCode.GUEST_INVALID_DOCUMENT
 
-                };
-            }
-            catch (MissingRequiredException e)
-            {
-                return new GuestResponse
-                {
-                    Success = false,
-                    Message = "Missing required information",
-                    ErrorCode = Guest.ErrorCode.MISSING_REQUIRED_INFORMATION
+            //    };
+            //}
+            //catch (MissingRequiredException e)
+            //{
+            //    return new GuestResponse
+            //    {
+            //        Success = false,
+            //        Message = "Missing required information",
+            //        ErrorCode = ErrorCode.GUEST_MISSING_REQUIRED_INFORMATION
 
-                };
-            }
-            catch (InvalidEmailException e)
-            {
-                return new GuestResponse
-                {
-                    Success = false,
-                    Message = "Invalid Email",
-                    ErrorCode = Guest.ErrorCode.INVALID_EMAIL
+            //    };
+            //}
+            //catch (InvalidEmailException e)
+            //{
+            //    return new GuestResponse
+            //    {
+            //        Success = false,
+            //        Message = "Invalid Email",
+            //        ErrorCode = ErrorCode.GUEST_INVALID_EMAIL
 
-                };
-            }
+            //    };
+            //}
             catch (Exception ex)
             {
                 return new GuestResponse
                 {
                     Success = false,
                     Message = ex.Message,
-                    ErrorCode = Guest.ErrorCode.COULD_NOT_STORE_DATA
+                    //ErrorCode = ErrorCode.GUEST_COULD_NOT_STORE_DATA
 
                 };
             }
@@ -86,7 +86,7 @@ namespace Application
                 return new GuestResponse
                 {
                     Success = false,
-                    ErrorCode = Guest.ErrorCode.NOT_FOUND,
+                    //ErrorCode = ErrorCode.GUEST_NOT_FOUND,
                     Message = "Nenhum registro foi encontrado para o id " + guestId.ToString()
                 };
             }

@@ -1,4 +1,4 @@
-﻿using Domain.Guest.Ports;
+﻿using Domain.Room.Ports;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,20 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Guest
+namespace Data.Room
 {
-    public class GuestRepository : IGuestRepository
+    public class RoomRepository : IRoomRepository
     {
         private readonly HotelDbContext _hotelDbContext;
-        public GuestRepository(HotelDbContext hotelContext)
+        public RoomRepository(HotelDbContext hotelContext)
         {
             _hotelDbContext = hotelContext;
         }
-        public async Task<int> Create(Domain.Guest.Entities.Guest guest)
+        public async Task<int> Create(Domain.Room.Entities.Room Room)
         {
-            _hotelDbContext.Guests.Add(guest);
+            _hotelDbContext.Rooms.Add(Room);
             await _hotelDbContext.SaveChangesAsync();
-            return guest.Id;
+            return Room.Id;
         }
 
         public Task Delete(int id)
@@ -27,17 +27,17 @@ namespace Data.Guest
             throw new NotImplementedException();
         }
 
-        public async Task<Domain.Guest.Entities.Guest?> Get(int id)
+        public async Task<Domain.Room.Entities.Room?> Get(int id)
         {
-            return await _hotelDbContext.Guests.Where(g => g.Id == id).FirstOrDefaultAsync();
+            return await _hotelDbContext.Rooms.Where(g => g.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<List<Domain.Guest.Entities.Guest>> GetAll()
+        public Task<List<Domain.Room.Entities.Room>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> Update(Domain.Guest.Entities.Guest guest)
+        public Task<int> Update(Domain.Room.Entities.Room Room)
         {
             throw new NotImplementedException();
         }

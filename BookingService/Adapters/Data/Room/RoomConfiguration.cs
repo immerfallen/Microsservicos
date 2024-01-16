@@ -1,17 +1,11 @@
-﻿using Entities = Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Room
 {
-    internal class RoomConfiguration : IEntityTypeConfiguration<Entities.Room>
+    internal class RoomConfiguration : IEntityTypeConfiguration<Domain.Room.Entities.Room>
     {
-        public void Configure(EntityTypeBuilder<Entities.Room> builder)
+        public void Configure(EntityTypeBuilder<Domain.Room.Entities.Room> builder)
         {
             builder.HasKey(x => x.Id);
             builder.OwnsOne(x => x.Price)

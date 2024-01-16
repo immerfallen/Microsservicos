@@ -1,9 +1,10 @@
 using Application;
 using Application.DTOs;
-using Application.Guest;
 using Application.Guest.Requests;
-using Domain.Entities;
-using Domain.Ports;
+using Application.Room.Requests;
+using Domain.Guest.Entities;
+using Domain.Guest.Enums;
+using Domain.Guest.Ports;
 using Microsoft.Win32;
 using Moq;
 using NUnit.Framework;
@@ -122,7 +123,7 @@ namespace ApplicationTests
             var res = await guestManager.CreateGuest(guestRequest);
             Assert.IsNotNull(res);
             Assert.False(res.Success);
-            Assert.AreEqual(res.ErrorCode, ErrorCode.INVALID_DOCUMENT);
+            Assert.AreEqual(res.ErrorCode, ErrorCode.GUEST_INVALID_DOCUMENT);
             Assert.AreEqual(res.Message, "Document Id is not valid");
 
         }
@@ -161,7 +162,7 @@ namespace ApplicationTests
             var res = await guestManager.CreateGuest(guestRequest);
             Assert.IsNotNull(res);
             Assert.False(res.Success);
-            Assert.AreEqual(res.ErrorCode, ErrorCode.MISSING_REQUIRED_INFORMATION);
+            Assert.AreEqual(res.ErrorCode, ErrorCode.GUEST_MISSING_REQUIRED_INFORMATION);
             Assert.AreEqual(res.Message, "Missing required information");
 
         }
@@ -193,7 +194,7 @@ namespace ApplicationTests
             var res = await guestManager.CreateGuest(guestRequest);
             Assert.IsNotNull(res);
             Assert.False(res.Success);
-            Assert.AreEqual(res.ErrorCode, ErrorCode.INVALID_EMAIL);
+            Assert.AreEqual(res.ErrorCode, ErrorCode.GUEST_INVALID_EMAIL);
             Assert.AreEqual(res.Message, "Invalid Email");
 
         }
@@ -212,7 +213,7 @@ namespace ApplicationTests
             var res = await guestManager.GetGuest(333);
             Assert.IsNotNull(res);
             Assert.False(res.Success);
-            Assert.AreEqual(res?.ErrorCode, ErrorCode.NOT_FOUND);
+            Assert.AreEqual(res?.ErrorCode, ErrorCode.GUEST_NOT_FOUND);
             Assert.AreEqual(res?.Message, "Nenhum registro foi encontrado para o id " + 333.ToString());
         }
 
@@ -224,9 +225,9 @@ namespace ApplicationTests
             {
                 Id = 333,
                 Name = "Test",
-                Document = new Domain.ValueObjects.PersonId
+                Document = new Domain.Guest.ValueObjects.PersonId
                 {
-                    DocumentType = Domain.Enums.DocumentType.DriverLicence,
+                    DocumentType = DocumentType.DriverLicence,
                     Idnumber = "123"
                 }
             };

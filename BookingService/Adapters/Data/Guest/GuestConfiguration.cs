@@ -1,4 +1,4 @@
-﻿using Entities = Domain.Entities;
+﻿using Entities = Domain.Guest.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Data.Guest
 {
-    internal class GuestConfiguration : IEntityTypeConfiguration<Entities.Guest>
+    internal class GuestConfiguration : IEntityTypeConfiguration<Domain.Guest.Entities.Guest>
     {
-        public void Configure(EntityTypeBuilder<Entities.Guest> builder)
+        public void Configure(EntityTypeBuilder<Domain.Guest.Entities.Guest> builder)
         {
             builder.HasKey(x => x.Id);
             builder.OwnsOne(x => x.Document)

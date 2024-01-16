@@ -39,6 +39,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationTests", "Booking
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainTests", "BookingService\Tests\DomainTests\DomainTests.csproj", "{595B2216-0EF9-4E62-8D9B-336D7FE53C3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authorization", "Authorization", "{40FF14AA-D5E6-4D28-89AF-890A33841736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", "{8893BDF7-71E7-422B-8AAF-7B06E2DA6CD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{595B2216-0EF9-4E62-8D9B-336D7FE53C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{595B2216-0EF9-4E62-8D9B-336D7FE53C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{595B2216-0EF9-4E62-8D9B-336D7FE53C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8893BDF7-71E7-422B-8AAF-7B06E2DA6CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8893BDF7-71E7-422B-8AAF-7B06E2DA6CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8893BDF7-71E7-422B-8AAF-7B06E2DA6CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8893BDF7-71E7-422B-8AAF-7B06E2DA6CD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +102,7 @@ Global
 		{9738991F-22BC-4890-97EE-6E18F28F3D9C} = {3FDC2110-FFC0-491A-98EB-6BAE614AB2CD}
 		{8459767A-8CF8-40D9-9A09-943928AD7756} = {D4D3A3AE-0B58-4806-BD4A-0D45527B8EC1}
 		{595B2216-0EF9-4E62-8D9B-336D7FE53C3D} = {9B703DFC-C80E-4BEA-9952-A12A20AFEEF7}
+		{8893BDF7-71E7-422B-8AAF-7B06E2DA6CD3} = {40FF14AA-D5E6-4D28-89AF-890A33841736}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14EC3B01-ED7D-4FC8-AEAC-458AA10954EE}
