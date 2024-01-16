@@ -1,7 +1,10 @@
 ﻿using Domain.Guest.Enums;
+using Entities = Domain.Guest.Entities;
 using Action = Domain.Guest.Enums.Action;
+using Domain.Booking.Ports;
+using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Guest.Entities
+namespace Domain.Booking.Entities
 {
     public class Booking
     {
@@ -11,13 +14,23 @@ namespace Domain.Guest.Entities
         }
 
         public int Id { get; set; }
+
+        [Required(ErrorMessage ="Data da locação é obrigatória")]
         public DateTime? PlacedAt { get; set; }
+
+        [Required(ErrorMessage = "Data de início da locação é obrigatória")]
         public DateTime Start { get; set; }
+
+        [Required(ErrorMessage = "Data de fim da locação é obrigatória")]
         public DateTime End { get; set; }
         private Status Status { get; set; }
         public Status CurrentStatus { get { return Status; } }
-        public Domain.Room.Entities.Room Room { get; set; }
-        public Guest Guest { get; set; }
+
+        [Required(ErrorMessage = "Número do quarto da locação é obrigatória")]
+        public Room.Entities.Room Room { get; set; }
+
+        [Required(ErrorMessage = "Número do hósopede da locação é obrigatória")]
+        public Guest.Entities.Guest Guest { get; set; }
         public void ChangeState(Action action)
         {
             Status = (Status, action) switch
@@ -30,6 +43,19 @@ namespace Domain.Guest.Entities
                 _ => Status
 
             };
+        }
+
+        public async Task Save(IBookingRepository bookingRepository)
+        {
+            if(Id == 0)
+            {
+                var resp = await bookingRepository.CreateBookingAsync(this);
+                this.Id = resp.Id;
+            }
+            else
+            {
+
+            }
         }
     }
 }
