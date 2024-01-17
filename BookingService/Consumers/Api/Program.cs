@@ -11,6 +11,7 @@ using Data.Room;
 using Domain.Booking.Ports;
 using Domain.Guest.Ports;
 using Domain.Room.Ports;
+using MCD.SAPAPI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -23,6 +24,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +59,8 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
+builder.Services.AddMediatR(typeof(BookingManager));
+
 #region IoC
 builder.Services.AddScoped<IGuestManager, GuestManager>();
 builder.Services.AddScoped<IGuestRepository, GuestRepository>();
@@ -65,6 +69,7 @@ builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IBookingManager, BookingManager>();
 builder.Services.AddScoped<IBookingRepository, BookingRespository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+//builder.Services.AddScoped<IWebService, WebService>();
 #endregion
 
 # region DB wiring up

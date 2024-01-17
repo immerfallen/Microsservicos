@@ -1,4 +1,5 @@
 ﻿using Domain.Guest.Enums;
+using System.Runtime.CompilerServices;
 
 namespace Application.DTOs
 {
@@ -12,10 +13,10 @@ namespace Application.DTOs
         public int Id { get; set; }
         public DateTime? PlacedAt { get; set; }
         public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime End {  get; set; }
         private Status Status { get; set; }
         public int RoomId { get; set; }
-        public int GuestId { get; set; }
+        public int GuestId { get; set; }        
 
         public static Domain.Booking.Entities.Booking MapToEntity(BookingDTO bookingDTO)
         {

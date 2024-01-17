@@ -16,9 +16,7 @@ namespace Domain.Guest.Entities
         public string? Name { get; set; }
         public string? SurName { get; set; }
         public string? Email { get; set; }
-        public PersonId Document { get; set; }
-
-        
+        public PersonId Document { get; set; }        
 
         public async Task Save(IGuestRepository guestRepository)
         {            

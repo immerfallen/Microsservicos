@@ -10,6 +10,8 @@
     <Folder Include="Booking\Enums\" />
     <Folder Include="Booking\ValueObject\" />
     <Folder Include="DomainEvents\" />
+    <Folder Include="Models\" />
+    <Folder Include="SB1.Objects\" />
     <Folder Include="Room\Exceptions\" />
   </ItemGroup>
 

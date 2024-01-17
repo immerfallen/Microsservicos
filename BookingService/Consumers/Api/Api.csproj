@@ -12,6 +12,8 @@
 	</PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.26">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Auth\Auth.csproj" />
     <ProjectReference Include="..\..\Adapters\Data\Data.csproj" />
+    <ProjectReference Include="..\..\Adapters\ServiceLayer\MCD.SAPAPI.ServiceLayer.csproj" />
     <ProjectReference Include="..\..\Core\Application\Application.csproj" />
   </ItemGroup>
 

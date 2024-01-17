@@ -46,7 +46,7 @@ namespace Domain.Booking.Entities
         }
 
         public void ValidateState()
-        {
+        {           
             if (this.PlacedAt == default(DateTime))
             {
                 throw new PlacedAtRequiredInformationException();

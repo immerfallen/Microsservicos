@@ -1,3 +1,4 @@
+using Domain.Booking.Entities;
 using Domain.Guest.Entities;
 using Domain.Guest.Enums;
 

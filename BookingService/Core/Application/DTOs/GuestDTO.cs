@@ -1,4 +1,5 @@
 ﻿using Domain.Guest.Enums;
+using Domain.Guest.Exceptions;
 using System.ComponentModel.DataAnnotations;
 using Entities = Domain.Guest.Entities;
 
@@ -27,6 +28,20 @@ namespace Application.DTOs
         [Required(ErrorMessage = "O campo IdTypeCode é obrigatório")]
         [Range(1,2, ErrorMessage = "O tipo deve estar entre 1 e 2")]
         public int IdTypeCode { get; set; }
+
+        private void ValidateState()
+        {
+            if(this.IdTypeCode== 0)
+            {
+                throw new InvalidDocumentException();
+            }
+        }
+
+        public bool IsValid()
+        {
+            this.ValidateState();
+            return true;
+        }
 
         public static Domain.Guest.Entities.Guest MapToEntity(GuestDTO guestDTO)
         {
