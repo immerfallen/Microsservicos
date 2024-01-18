@@ -11,6 +11,6 @@ namespace Application.Booking.Commands
 {
     public class CreateBookingCommand : IRequest<BookingResponse>
     {
-      public BookingDTO bookingDTO { get; set; }
+      public BookingDTO BookingDTO { get; set; }
     }
 }

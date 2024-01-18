@@ -1,5 +1,5 @@
 using Application;
-using Application.DTOs;
+using Application.Guest.DTOs;
 using Application.Guest.Requests;
 using Application.Room.Requests;
 using Domain.Guest.Entities;

@@ -29,7 +29,7 @@ namespace Api.Controller
         {
             var command = new CreateBookingCommand()
             {
-                bookingDTO = booking
+                BookingDTO = booking
             };
             var res = await _mediator.Send(command);
 

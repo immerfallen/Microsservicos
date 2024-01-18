@@ -24,15 +24,17 @@ namespace Application.Booking.Commands
         {
             try
             {
-                var booking = BookingDTO.MapToEntity(request.bookingDTO);
-                booking.Guest = await _guestRepository.Get(request.bookingDTO.GuestId);
-                booking.Room = await _roomRepository.Get(request.bookingDTO.RoomId);
+                var booking = BookingDTO.MapToEntity(request.BookingDTO);
+                booking.Guest = await _guestRepository.Get(request.BookingDTO.GuestId);
+                booking.Room = await _roomRepository.Get(request.BookingDTO.RoomId);
+
                 await booking.Save(_bookingRepository);
-                request.bookingDTO.Id = booking.Id;
+
+                request.BookingDTO.Id = booking.Id;
 
                 return new BookingResponse
                 {
-                    Data = request.bookingDTO,
+                    Data = request.BookingDTO,
                     Success = true,
                 };
             }
