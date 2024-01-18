@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controller
 {
-    
+
     [Route("[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
 
         private readonly IUserRepository _userRepository;
-            private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public LoginController(IUserRepository userManager, IConfiguration configuration)
         {
@@ -24,7 +24,7 @@ namespace Api.Controller
             _configuration = configuration;
         }
 
-        [HttpPost]        
+        [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
         {
@@ -47,6 +47,6 @@ namespace Api.Controller
                 user = user,
                 token = token
             };
-        }        
+        }
     }
 }
