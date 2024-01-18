@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Booking.Commands
+namespace Application.Booking.Queries
 {
-    public class CreateBookingCommand : IRequest<BookingResponse>
+    public class GetBookingQuery : IRequest<BookingResponse>
     {
-      public BookingDTO bookingDTO { get; set; }
+        public int Id { get; set; }
     }
 }

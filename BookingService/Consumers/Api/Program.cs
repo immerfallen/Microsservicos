@@ -1,6 +1,8 @@
 using Application;
 using Application.Booking.Ports;
 using Application.Guest.Ports;
+using Payment.Application.MercadoPago.Adapter;
+using Application.Payment.Ports;
 using Application.Room.Ports;
 using Auth;
 using Auth.Interfaces;
@@ -11,20 +13,16 @@ using Data.Room;
 using Domain.Booking.Ports;
 using Domain.Guest.Ports;
 using Domain.Room.Ports;
-using MCD.SAPAPI;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Globalization;
-using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
-using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,7 +57,7 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
-builder.Services.AddMediatR(typeof(BookingManager));
+builder.Services.AddMediatR(typeof(Application.BookingManager));
 
 #region IoC
 builder.Services.AddScoped<IGuestManager, GuestManager>();
@@ -69,6 +67,9 @@ builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IBookingManager, BookingManager>();
 builder.Services.AddScoped<IBookingRepository, BookingRespository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPaymentProcessorFactory, PaymentProcessorFactory>();
+builder.Services.AddScoped<IPaymentProcessor, MercadoPagoAdpater>();
+
 //builder.Services.AddScoped<IWebService, WebService>();
 #endregion
 
@@ -80,8 +81,6 @@ builder.Services.AddDbContext<HotelDbContext>(
 var connectionStringUser = builder.Configuration.GetConnectionString("User");
 builder.Services.AddDbContext<UserDbContext>(
     options => options.UseSqlite(connectionStringUser));
-
-
 
 #endregion
 

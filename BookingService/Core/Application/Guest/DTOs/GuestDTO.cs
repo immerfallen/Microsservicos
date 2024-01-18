@@ -3,7 +3,7 @@ using Domain.Guest.Exceptions;
 using System.ComponentModel.DataAnnotations;
 using Entities = Domain.Guest.Entities;
 
-namespace Application.DTOs
+namespace Application.Guest.DTOs
 {
     public class GuestDTO
     {
@@ -14,24 +14,24 @@ namespace Application.DTOs
         [MinLength(3, ErrorMessage = "Name => Tamanho mínimo deve ser 3")]
         public string? Name { get; set; }
 
-        [Required(ErrorMessage = "SurName => É obrigatório")]        
+        [Required(ErrorMessage = "SurName => É obrigatório")]
         [MaxLength(256, ErrorMessage = "SurName => Tamanho máximo permitido é de 256")]
         [MinLength(3, ErrorMessage = "SurName => Tamanho mínimo deve ser 3")]
         public string? SurName { get; set; }
 
         [Required(ErrorMessage = "O campo Email é obrigatório")]
-        [EmailAddress(ErrorMessage ="Informar um email válido")]
+        [EmailAddress(ErrorMessage = "Informar um email válido")]
         public string? Email { get; set; }
 
         public string? IdNumber { get; set; }
 
         [Required(ErrorMessage = "O campo IdTypeCode é obrigatório")]
-        [Range(1,2, ErrorMessage = "O tipo deve estar entre 1 e 2")]
+        [Range(1, 2, ErrorMessage = "O tipo deve estar entre 1 e 2")]
         public int IdTypeCode { get; set; }
 
         private void ValidateState()
         {
-            if(this.IdTypeCode== 0)
+            if (IdTypeCode == 0)
             {
                 throw new InvalidDocumentException();
             }
@@ -39,11 +39,11 @@ namespace Application.DTOs
 
         public bool IsValid()
         {
-            this.ValidateState();
+            ValidateState();
             return true;
         }
 
-        public static Domain.Guest.Entities.Guest MapToEntity(GuestDTO guestDTO)
+        public static Entities.Guest MapToEntity(GuestDTO guestDTO)
         {
             return new Entities.Guest
             {
@@ -59,7 +59,7 @@ namespace Application.DTOs
             };
         }
 
-        public static GuestDTO MapToDTO(Domain.Guest.Entities.Guest guest)
+        public static GuestDTO MapToDTO(Entities.Guest guest)
         {
             return new GuestDTO
             {

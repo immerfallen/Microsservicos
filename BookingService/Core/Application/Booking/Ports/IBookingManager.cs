@@ -1,5 +1,7 @@
-﻿using Application.Booking.Responses;
-using Application.DTOs;
+﻿using Application.Booking.DTOs;
+using Application.Booking.Responses;
+using Application.Payment.DTOs;
+using Application.Payment.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace Application.Booking.Ports
     public interface IBookingManager
     {
         Task<BookingResponse> CreateBooking(BookingDTO booking);
-        Task<BookingResponse> GetBooking(int bookingID);
+        Task<BookingResponse> GetBooking(int bookingID);        
+        Task<PaymentResponse> PayForBooking(PaymentRequestDTO payment);
     }
 }

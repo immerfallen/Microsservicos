@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Auth\Auth.csproj" />
+    <ProjectReference Include="..\..\..\PaymentService\Core\Core\Application\Payment.Application.csproj" />
     <ProjectReference Include="..\..\Adapters\Data\Data.csproj" />
     <ProjectReference Include="..\..\Adapters\ServiceLayer\MCD.SAPAPI.ServiceLayer.csproj" />
     <ProjectReference Include="..\..\Core\Application\Application.csproj" />

@@ -1,5 +1,5 @@
 ﻿using Application;
-using Application.DTOs;
+using Application.Room.DTOs;
 using Application.Room.Ports;
 using Application.Room.Requests;
 using Application.Room.Responses;

@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <Folder Include="Booking\Requests\" />
+    <Folder Include="Guest\Commands\" />
+    <Folder Include="Guest\Queries\" />
+    <Folder Include="Payment\Requests\" />
   </ItemGroup>
 
   <ItemGroup>

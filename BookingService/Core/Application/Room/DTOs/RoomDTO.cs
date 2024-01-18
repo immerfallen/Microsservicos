@@ -3,10 +3,10 @@ using Domain.Room.ValueObjects;
 using System.ComponentModel.DataAnnotations;
 using Entities = Domain.Room;
 
-namespace Application.DTOs
+namespace Application.Room.DTOs
 {
     public class RoomDTO
-    {      
+    {
         public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
@@ -33,7 +33,7 @@ namespace Application.DTOs
             };
         }
 
-        public static RoomDTO MapToDTO(Domain.Room.Entities.Room room)
+        public static RoomDTO MapToDTO(Entities.Entities.Room room)
         {
             return new RoomDTO
             {
