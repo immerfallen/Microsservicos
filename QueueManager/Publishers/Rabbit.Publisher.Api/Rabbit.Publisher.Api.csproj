@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Application\Rabbit.Application\Rabbit.Application.csproj" />
+    <ProjectReference Include="..\..\Core\Domain\Rabbit.Domain\Rabbit.Domain.csproj" />
+    <ProjectReference Include="..\..\Repository\Rabbit.Respository\Rabbit.Respository.csproj" />
+  </ItemGroup>
+
+</Project>

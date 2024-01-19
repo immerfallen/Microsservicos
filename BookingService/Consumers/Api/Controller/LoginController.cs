@@ -1,10 +1,7 @@
-﻿using Application.Guest.Ports;
-using Auth;
-using Auth.Domain;
+﻿using Auth.Domain;
 using Auth.Interfaces;
 using Auth.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controller
